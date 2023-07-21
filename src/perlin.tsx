@@ -59,7 +59,6 @@ export const PerlinInputsForm: React.ComponentType<Props> = props => {
     })
   }, [store.amplitude, store.frequency, store.height, store.octaves, store.width])
 
-  // TODO: Render fields.
   return (
     <>
       <label>Height</label>

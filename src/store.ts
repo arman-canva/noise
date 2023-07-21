@@ -6,8 +6,14 @@ export type Store = {
   setAlgorithm: (algorithm: Algorithm) => void
   isExporting: boolean
   setIsExporting: (isExporting: boolean) => void
-  texture: string | undefined
-  setTexture: (texture: string) => void
+  texture: Texture | undefined
+  setTexture: (texture: Texture) => void
+}
+
+export type Texture = {
+  dataUrl: string
+  height: number
+  width: number
 }
 
 export const useStore = create<Store>()(set => ({

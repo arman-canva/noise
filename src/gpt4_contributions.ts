@@ -1,10 +1,11 @@
 // Contributions from GPT4:
 
 import { PerlinNoiseOptions } from './perlin'
+import { Texture } from './store'
 
 export const generateOpenSimplexNoise = (
   options: { height: number; width: number; seed: number },
-): string => {
+) => {
   const {
     height,
     width,
@@ -21,7 +22,7 @@ export const generateOpenSimplexNoise = (
   }
 
   const imageData = context.createImageData(width, height)
-  const simplex = new OpenSimplexNoise(seed)
+  const simplex = new OpenSimplexNoise(0.5)
 
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
@@ -40,7 +41,7 @@ export const generateOpenSimplexNoise = (
   return canvas.toDataURL()
 }
 
-export const generatePerlinNoise = (options: PerlinNoiseOptions): string => {
+export const generatePerlinNoise = (options: PerlinNoiseOptions): Texture => {
   const {
     amplitude,
     frequency,
@@ -82,7 +83,11 @@ export const generatePerlinNoise = (options: PerlinNoiseOptions): string => {
 
   context.putImageData(imageData, 0, 0)
 
-  return canvas.toDataURL()
+  return {
+    dataUrl: canvas.toDataURL(),
+    height,
+    width,
+  }
 }
 
 export class OpenSimplexNoise {
