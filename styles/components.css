@@ -2,6 +2,7 @@
   cursor: pointer;
   display: inline-block;
 }
+
 /* List item */
 .listItem {
   margin-bottom: var(--ui-kit-space-1);
