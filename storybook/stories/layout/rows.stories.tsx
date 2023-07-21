@@ -1,20 +1,20 @@
-import { Box, Title } from "@canva/app-ui-kit";
-import type { Meta } from "@storybook/react";
-import React from "react";
-import { Rows } from "../../index";
+import { Box, Title } from '@canva/app-ui-kit'
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Rows } from '../../index'
 
 /**
  * The `<Rows/>` component places items vertically.
  * The space between items can be adjusted using the spacing prop. Items can be aligned horizontally using the align prop.
  */
 const meta: Meta<typeof Rows> = {
-  title: "@canva/app-ui-kit/Layout/Rows",
+  title: '@canva/app-ui-kit/Layout/Rows',
   component: Rows,
-  tags: ["autodocs"],
-  args: { align: "stretch", spacing: "1u" },
-};
+  tags: ['autodocs'],
+  args: { align: 'stretch', spacing: '1u' },
+}
 
-export default meta;
+export default meta
 
 export const SimpleRows = (args) => {
   return (
@@ -29,8 +29,8 @@ export const SimpleRows = (args) => {
         <Title size="xsmall">Row</Title>
       </Box>
     </Rows>
-  );
-};
+  )
+}
 
 export const RowsAlignment = (_) => {
   return (
@@ -92,8 +92,8 @@ export const RowsAlignment = (_) => {
         </Rows>
       </Rows>
     </Rows>
-  );
-};
+  )
+}
 
 export const RowsSpacing = (_) => {
   return (
@@ -155,5 +155,5 @@ export const RowsSpacing = (_) => {
         </Rows>
       </Rows>
     </Rows>
-  );
-};
+  )
+}

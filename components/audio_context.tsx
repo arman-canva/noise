@@ -1,15 +1,15 @@
-import * as React from "react";
+import * as React from 'react'
 
 export type AudioContextValue = {
-  playingAudio?: HTMLAudioElement;
-  isDefault: false;
-  playAudio: (audio: HTMLAudioElement) => void;
-  stopPlaying: () => void;
-};
+  playingAudio?: HTMLAudioElement
+  isDefault: false
+  playAudio: (audio: HTMLAudioElement) => void
+  stopPlaying: () => void
+}
 
 export const AudioContext = React.createContext<AudioContextValue | undefined>(
-  undefined
-);
+  undefined,
+)
 
 /**
  *  This provider is used to track the currently playing audio track
@@ -19,31 +19,31 @@ export const AudioContext = React.createContext<AudioContextValue | undefined>(
 export const AudioContextProvider = (props: React.PropsWithChildren<{}>) => {
   const [playingAudio, setPlayingAudio] = React.useState<
     HTMLAudioElement | undefined
-  >();
-  const previousAudio = React.useRef(playingAudio);
+  >()
+  const previousAudio = React.useRef(playingAudio)
 
   React.useEffect(() => {
     if (previousAudio.current && previousAudio.current !== playingAudio) {
-      previousAudio.current.pause();
-      previousAudio.current.onended = null;
+      previousAudio.current.pause()
+      previousAudio.current.onended = null
     }
-    previousAudio.current = playingAudio;
-  });
+    previousAudio.current = playingAudio
+  })
 
   const stopPlaying = () => {
     if (playingAudio) {
-      playingAudio?.pause();
-      playingAudio.onended = null;
+      playingAudio?.pause()
+      playingAudio.onended = null
     }
-    setPlayingAudio(undefined);
-  };
+    setPlayingAudio(undefined)
+  }
 
   const playAudio = (audio: HTMLAudioElement) => {
-    audio.currentTime = 0;
-    audio.play();
-    audio.onended = stopPlaying;
-    setPlayingAudio(audio);
-  };
+    audio.currentTime = 0
+    audio.play()
+    audio.onended = stopPlaying
+    setPlayingAudio(audio)
+  }
 
   return (
     <AudioContext.Provider
@@ -55,5 +55,5 @@ export const AudioContextProvider = (props: React.PropsWithChildren<{}>) => {
         playAudio,
       }}
     />
-  );
-};
+  )
+}

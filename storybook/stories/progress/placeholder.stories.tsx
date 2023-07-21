@@ -1,7 +1,7 @@
-import { Column, Columns } from "@canva/app-ui-kit";
-import type { Meta } from "@storybook/react";
-import React from "react";
-import { Placeholder } from "../../index";
+import { Column, Columns } from '@canva/app-ui-kit'
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Placeholder } from '../../index'
 
 /**
  * `<Placeholder/>` is used to visualize content while waiting for it to load.
@@ -12,19 +12,19 @@ import { Placeholder } from "../../index";
  * For placeholders used for Text or Titles, use `<TextPlaceholder/>` or `<TitlePlaceholder/>`.
  */
 const meta: Meta<typeof Placeholder> = {
-  title: "@canva/app-ui-kit/Progress/Placeholder/Placeholder",
+  title: '@canva/app-ui-kit/Progress/Placeholder/Placeholder',
   component: Placeholder,
-  tags: ["autodocs"],
-  args: { shape: "circle" },
-};
+  tags: ['autodocs'],
+  args: { shape: 'circle' },
+}
 
-export default meta;
+export default meta
 
 export const SimplePlaceholder = (args) => (
-  <div style={{ width: "100px", height: "120px" }}>
+  <div style={{ width: '100px', height: '120px' }}>
     <Placeholder shape={args.shape} />
   </div>
-);
+)
 export const PlaceholderShapes = (_) => (
   <Columns spacing="1u">
     <Column>
@@ -34,14 +34,14 @@ export const PlaceholderShapes = (_) => (
       <Placeholder shape="square" />
     </Column>
     <Column>
-      <div style={{ height: "150px" }}>
+      <div style={{ height: '150px' }}>
         <Placeholder shape="rectangle" />
       </div>
     </Column>
     <Column>
-      <div style={{ height: "150px" }}>
+      <div style={{ height: '150px' }}>
         <Placeholder shape="sharpRectangle" />
       </div>
     </Column>
   </Columns>
-);
+)

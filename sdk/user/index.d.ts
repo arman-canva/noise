@@ -2,7 +2,7 @@
  * An alias for the Authentication interface, providing access to authentication related functionality
  * @public
  */
-export declare const auth: Authentication;
+export declare const auth: Authentication
 
 /**
  * An API for authenticating from apps.
@@ -37,8 +37,8 @@ export declare interface Authentication {
    * accessing more API scopes later.
    */
   requestAuthentication: (
-    request?: AuthenticationRequest
-  ) => Promise<AuthenticationResponse>;
+    request?: AuthenticationRequest,
+  ) => Promise<AuthenticationResponse>
   /**
    * Returns a JWT for authentication with your backend
    *
@@ -61,7 +61,7 @@ export declare interface Authentication {
    *  With the fields described above, your backend application will be able to uniquely identify
    *  your app, what user and the current brand of that user.
    */
-  getCanvaUserToken: () => Promise<CanvaUserToken>;
+  getCanvaUserToken: () => Promise<CanvaUserToken>
 }
 
 /**
@@ -75,8 +75,8 @@ export declare interface Authentication {
  * This is a subtype of the {@link AuthenticationResponse} type.
  */
 export declare type AuthenticationAborted = {
-  readonly status: "ABORTED";
-};
+  readonly status: 'ABORTED'
+}
 
 /**
  * @public
@@ -86,8 +86,8 @@ export declare type AuthenticationAborted = {
  * This is a subtype of the {@link AuthenticationResponse} type.
  */
 export declare type AuthenticationCompleted = {
-  readonly status: "COMPLETED";
-};
+  readonly status: 'COMPLETED'
+}
 
 /**
  * @public
@@ -106,9 +106,9 @@ export declare type AuthenticationCompleted = {
  * This is a subtype of the {@link AuthenticationResponse} type.
  */
 export declare type AuthenticationDenied = {
-  readonly status: "DENIED";
-  readonly details: readonly string[];
-};
+  readonly status: 'DENIED'
+  readonly details: readonly string[]
+}
 
 /**
  * @public
@@ -137,8 +137,8 @@ export declare type AuthenticationRequest = {
    *
    * The length of the string must not exceed 32 characters.
    */
-  context?: string;
-};
+  context?: string
+}
 
 /**
  * @public
@@ -150,7 +150,7 @@ export declare type AuthenticationRequest = {
 export declare type AuthenticationResponse =
   | AuthenticationCompleted
   | AuthenticationAborted
-  | AuthenticationDenied;
+  | AuthenticationDenied
 
 /**
  * @public
@@ -160,7 +160,7 @@ export declare type AuthenticationResponse =
  * This is an alias of the string type.
  */
 export declare type CanvaUserToken = string & {
-  __canvaUserToken: never;
-};
+  __canvaUserToken: never
+}
 
-export {};
+export {}

@@ -1,7 +1,7 @@
-import { Box, Title, Text, Rows } from "@canva/app-ui-kit";
-import type { Meta } from "@storybook/react";
-import React from "react";
-import { Column, Columns } from "../../index";
+import { Box, Rows, Text, Title } from '@canva/app-ui-kit'
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Column, Columns } from '../../index'
 
 /**
  * The `<Columns/>` component automatically places items horizontally,
@@ -11,13 +11,13 @@ import { Column, Columns } from "../../index";
  * > The `<Column/>` component must be used as children of the `<Columns/>` component.
  */
 const meta: Meta<typeof Columns> = {
-  title: "@canva/app-ui-kit/Layout/Columns",
+  title: '@canva/app-ui-kit/Layout/Columns',
   component: Columns,
-  tags: ["autodocs"],
-  args: { align: "start", alignY: "start", spacing: "1u" },
-};
+  tags: ['autodocs'],
+  args: { align: 'start', alignY: 'start', spacing: '1u' },
+}
 
-export default meta;
+export default meta
 
 export const ColumnsWithVariableColumn = (args) => {
   return (
@@ -54,8 +54,8 @@ export const ColumnsWithVariableColumn = (args) => {
         </Box>
       </Column>
     </Columns>
-  );
-};
+  )
+}
 
 export const ColumnsHorizontalAlignment = (_) => {
   return (
@@ -161,8 +161,8 @@ export const ColumnsHorizontalAlignment = (_) => {
         </Columns>
       </Rows>
     </Rows>
-  );
-};
+  )
+}
 
 export const ColumnsVerticalAlignment = (_) => {
   return (
@@ -312,8 +312,8 @@ export const ColumnsVerticalAlignment = (_) => {
         </Columns>
       </Rows>
     </Rows>
-  );
-};
+  )
+}
 
 export const ColumnsSpacing = (_) => {
   return (
@@ -669,5 +669,5 @@ export const ColumnsSpacing = (_) => {
         </Columns>
       </Rows>
     </Rows>
-  );
-};
+  )
+}

@@ -1,15 +1,15 @@
-import { Title } from "@canva/app-ui-kit";
-import type { Meta, StoryObj } from "@storybook/react";
-import { TitlePlaceholder } from "../../index";
+import { Title } from '@canva/app-ui-kit'
+import type { Meta, StoryObj } from '@storybook/react'
+import { TitlePlaceholder } from '../../index'
 
 const meta: Meta<typeof TitlePlaceholder> = {
-  title: "@canva/app-ui-kit/Progress/Placeholder/Title Placeholder",
+  title: '@canva/app-ui-kit/Progress/Placeholder/Title Placeholder',
   component: TitlePlaceholder,
-  tags: ["autodocs"],
-  args: { size: "medium" },
-};
+  tags: ['autodocs'],
+  args: { size: 'medium' },
+}
 
-export default meta;
-type Story = StoryObj<typeof Title>;
+export default meta
+type Story = StoryObj<typeof Title>
 
-export const SimpleTitlePlaceholder: Story = {};
+export const SimpleTitlePlaceholder: Story = {}

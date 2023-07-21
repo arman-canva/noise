@@ -1,7 +1,7 @@
-import { Box, Title, Rows } from "@canva/app-ui-kit";
-import type { Meta } from "@storybook/react";
-import React from "react";
-import { Column, Columns } from "../../index";
+import { Box, Rows, Title } from '@canva/app-ui-kit'
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Column, Columns } from '../../index'
 
 /**
  * The `<Column/>` component is a component that must be used as children of the `<Columns/>` component.
@@ -9,13 +9,13 @@ import { Column, Columns } from "../../index";
  * The width of each column can be defined using the width prop in `<Column/>`.
  */
 const meta: Meta<typeof Column> = {
-  title: "@canva/app-ui-kit/Layout/Column",
+  title: '@canva/app-ui-kit/Layout/Column',
   component: Column,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {},
-};
+}
 
-export default meta;
+export default meta
 
 export const ColumnsWithVariableWidths = (args) => {
   return (
@@ -51,8 +51,8 @@ export const ColumnsWithVariableWidths = (args) => {
         </Box>
       </Column>
     </Columns>
-  );
-};
+  )
+}
 
 export const ColumnWidths = (_) => {
   return (
@@ -344,5 +344,5 @@ export const ColumnWidths = (_) => {
         </Column>
       </Columns>
     </Rows>
-  );
-};
+  )
+}

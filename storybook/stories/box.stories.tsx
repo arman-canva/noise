@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Box } from "../index";
+import { Box } from '../index'
 
 /**
  * The Box component is a styled wrapper for child elements.
@@ -10,13 +10,13 @@ import { Box } from "../index";
  * To adjust spacing between elements, use layout components (e.g: Rows, Columns).
  */
 const meta: Meta<typeof Box> = {
-  title: "@canva/app-ui-kit/Box",
+  title: '@canva/app-ui-kit/Box',
   component: Box,
-  tags: ["autodocs"],
-  args: { children: "Child of Box" },
-};
+  tags: ['autodocs'],
+  args: { children: 'Child of Box' },
+}
 
-export default meta;
-type Story = StoryObj<typeof Box>;
+export default meta
+type Story = StoryObj<typeof Box>
 
-export const SimpleBox: Story = {};
+export const SimpleBox: Story = {}

@@ -1,11 +1,10 @@
-require("dotenv").config();
-const path = require("path");
-const TerserPlugin = require("terser-webpack-plugin");
-const { DefinePlugin } = require("webpack");
-const chalk = require("chalk");
+require('dotenv').config()
+const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
+const { DefinePlugin } = require('webpack')
+const chalk = require('chalk')
 
 /**
- *
  * @param {Object} [options]
  * @param {string} [options.appEntry=./src/index.tsx]
  * @param {string} [options.backendHost]
@@ -18,45 +17,45 @@ const chalk = require("chalk");
  */
 function buildConfig({
   devConfig,
-  appEntry = path.join(__dirname, "src", "index.tsx"),
+  appEntry = path.join(__dirname, 'src', 'index.tsx'),
   backendHost = process.env.CANVA_BACKEND_HOST,
 } = {}) {
-  const mode = devConfig ? "development" : "production";
+  const mode = devConfig ? 'development' : 'production'
 
   if (!backendHost) {
     console.error(
-      chalk.redBright.bold("BACKEND_HOST is undefined."),
-      `Refer to "Customizing the backend host" in the README.md for more information.`
-    );
-    process.exit(-1);
-  } else if (backendHost.includes("localhost") && mode === "production") {
+      chalk.redBright.bold('BACKEND_HOST is undefined.'),
+      `Refer to "Customizing the backend host" in the README.md for more information.`,
+    )
+    process.exit(-1)
+  } else if (backendHost.includes('localhost') && mode === 'production') {
     console.error(
       chalk.redBright.bold(
-        "BACKEND_HOST should not be set to localhost for production builds!"
+        'BACKEND_HOST should not be set to localhost for production builds!',
       ),
-      `Refer to "Customizing the backend host" in the README.md for more information.`
-    );
+      `Refer to "Customizing the backend host" in the README.md for more information.`,
+    )
   }
 
   return {
     mode,
-    context: path.resolve(__dirname, "./"),
+    context: path.resolve(__dirname, './'),
     entry: {
       app: appEntry,
     },
-    target: "web",
+    target: 'web',
     resolve: {
       alias: {
-        assets: path.resolve(__dirname, "assets"),
-        components: path.resolve(__dirname, "components"),
-        utils: path.resolve(__dirname, "utils"),
-        styles: path.resolve(__dirname, "styles"),
-        src: path.resolve(__dirname, "src"),
+        assets: path.resolve(__dirname, 'assets'),
+        components: path.resolve(__dirname, 'components'),
+        utils: path.resolve(__dirname, 'utils'),
+        styles: path.resolve(__dirname, 'styles'),
+        src: path.resolve(__dirname, 'src'),
       },
-      extensions: [".ts", ".tsx", ".js", ".css", ".svg", ".woff", ".woff2"],
+      extensions: ['.ts', '.tsx', '.js', '.css', '.svg', '.woff', '.woff2'],
     },
     infrastructureLogging: {
-      level: "none",
+      level: 'none',
     },
     module: {
       rules: [
@@ -65,7 +64,7 @@ function buildConfig({
           exclude: /node_modules/,
           use: [
             {
-              loader: "ts-loader",
+              loader: 'ts-loader',
               options: {
                 transpileOnly: true,
               },
@@ -76,9 +75,9 @@ function buildConfig({
           test: /\.css$/,
           exclude: /node_modules/,
           use: [
-            "style-loader",
+            'style-loader',
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 modules: true,
               },
@@ -89,26 +88,26 @@ function buildConfig({
                 postcssOptions: {
                   plugins: [
                     require('cssnano')({ preset: 'default' }),
-                  ]
-                }
-              }
-            }
+                  ],
+                },
+              },
+            },
           ],
         },
         {
           test: /\.(png|jpg|jpeg)$/i,
-          type: "asset/inline",
+          type: 'asset/inline',
         },
         {
           test: /\.(woff|woff2)$/,
-          type: "asset/inline",
+          type: 'asset/inline',
         },
         {
           test: /\.svg$/,
-          include: path.resolve(__dirname, "assets", "icons"),
+          include: path.resolve(__dirname, 'assets', 'icons'),
           use: [
             {
-              loader: "@svgr/webpack",
+              loader: '@svgr/webpack',
               options: {
                 icon: true,
                 template: createIconTemplate,
@@ -118,15 +117,15 @@ function buildConfig({
         },
         {
           test: /\.svg$/,
-          exclude: path.resolve(__dirname, "assets", "icons"),
+          exclude: path.resolve(__dirname, 'assets', 'icons'),
           oneOf: [
             {
               issuer: /\.[jt]sx?$/,
               resourceQuery: /react/, // *.svg?react
-              use: ["@svgr/webpack", "url-loader"],
+              use: ['@svgr/webpack', 'url-loader'],
             },
             {
-              type: "asset/resource",
+              type: 'asset/resource',
               parser: {
                 dataUrlCondition: {
                   maxSize: 200,
@@ -139,13 +138,13 @@ function buildConfig({
           test: /\.css$/,
           include: /node_modules/,
           use: [
-            "style-loader",
-            "css-loader",
+            'style-loader',
+            'css-loader',
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
                 postcssOptions: {
-                  plugins: [require("cssnano")({ preset: "default" })],
+                  plugins: [require('cssnano')({ preset: 'default' })],
                 },
               },
             },
@@ -163,12 +162,12 @@ function buildConfig({
               ascii_only: true,
             },
           },
-        })
+        }),
       ],
     },
     output: {
       filename: `[name].js`,
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, 'dist'),
       clean: true,
     },
     plugins: [
@@ -177,7 +176,7 @@ function buildConfig({
       }),
     ],
     ...buildDevConfig(devConfig),
-  };
+  }
 }
 
 /**
@@ -187,7 +186,7 @@ function buildConfig({
  * Learn more: https://react-svgr.com/docs/options/#template
  */
 function createIconTemplate(variables, { tpl }) {
-  return tpl`
+  return tpl `
 ${variables.imports};
 ${variables.interfaces};
 
@@ -206,11 +205,10 @@ const ${variables.componentName} = (${variables.props}) => {
 };
  
 ${variables.exports};
-`;
+`
 }
 
 /**
- *
  * @param {Object} [options]
  * @param {string} options.port
  * @param {boolean} [options.enableHmr]
@@ -220,53 +218,53 @@ ${variables.exports};
  */
 function buildDevConfig(options) {
   if (!options) {
-    return null;
+    return null
   }
 
-  const { port, enableHmr, appId, enableHttps } = options;
+  const { port, enableHmr, appId, enableHttps } = options
 
   let devServer = {
-    server: enableHttps ? "https" : "http",
+    server: enableHttps ? 'https' : 'http',
     historyApiFallback: {
-      rewrites: [{ from: /^\/$/, to: "/app.js" }],
+      rewrites: [{ from: /^\/$/, to: '/app.js' }],
     },
     port,
     client: {
-      logging: "verbose",
+      logging: 'verbose',
     },
     static: {
-      directory: path.resolve(__dirname, "assets"),
-      publicPath: "/assets",
+      directory: path.resolve(__dirname, 'assets'),
+      publicPath: '/assets',
     },
-  };
+  }
 
   if (enableHmr && appId) {
-    const appDomain = `app-${appId}.canva-apps.com`;
+    const appDomain = `app-${appId}.canva-apps.com`
     devServer = {
       ...devServer,
-      host: "localhost",
+      host: 'localhost',
       allowedHosts: appDomain,
       headers: {
-        "Access-Control-Allow-Origin": `https://${appDomain}`,
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Private-Network": "true",
+        'Access-Control-Allow-Origin': `https://${appDomain}`,
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Private-Network': 'true',
       },
-    };
+    }
   } else {
     if (enableHmr && !appId) {
       console.warn(
-        "Attempted to enable HMR without supplying an App ID... Disabling HMR."
-      );
+        'Attempted to enable HMR without supplying an App ID... Disabling HMR.',
+      )
     }
-    devServer.webSocketServer = false;
+    devServer.webSocketServer = false
   }
 
   return {
-    devtool: "source-map",
+    devtool: 'source-map',
     devServer,
-  };
+  }
 }
 
-module.exports = () => buildConfig();
+module.exports = () => buildConfig()
 
-module.exports.buildConfig = buildConfig;
+module.exports.buildConfig = buildConfig

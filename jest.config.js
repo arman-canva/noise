@@ -4,4 +4,4 @@ module.exports = {
   testEnvironment: 'node',
   testRegex: '(/tests/.*|(\\.|/)(tests))\\.ts?$',
   modulePathIgnorePatterns: ['./build/', './node_modules/'],
-};
+}

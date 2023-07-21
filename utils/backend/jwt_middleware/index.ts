@@ -1,1 +1,1 @@
-export { createJwtMiddleware } from "./jwt_middleware";
+export { createJwtMiddleware } from './jwt_middleware'

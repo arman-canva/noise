@@ -1,25 +1,25 @@
-import { Box, Rows } from "@canva/app-ui-kit";
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import { Text } from "../index";
+import { Box, Rows } from '@canva/app-ui-kit'
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import { Text } from '../index'
 
 const meta: Meta<typeof Text> = {
-  title: "@canva/app-ui-kit/Text",
+  title: '@canva/app-ui-kit/Text',
   component: Text,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    children: "Example text",
-    size: "medium",
-    variant: "regular",
-    alignment: "start",
-    capitalization: "default",
+    children: 'Example text',
+    size: 'medium',
+    variant: 'regular',
+    alignment: 'start',
+    capitalization: 'default',
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Text>;
+export default meta
+type Story = StoryObj<typeof Text>
 
-export const SimpleText: Story = {};
+export const SimpleText: Story = {}
 export const TextSizes = (args) => {
   return (
     <Rows spacing="1u">
@@ -29,16 +29,16 @@ export const TextSizes = (args) => {
       <Text size="small">{args.children} small</Text>
       <Text size="xsmall">{args.children} xsmall</Text>
     </Rows>
-  );
-};
+  )
+}
 export const TextVariant = (args) => {
   return (
     <Rows spacing="1u">
       <Text variant="regular">{args.children} regular</Text>
       <Text variant="bold">{args.children} bold</Text>
     </Rows>
-  );
-};
+  )
+}
 export const TextAlignment = (_) => {
   return (
     <Rows spacing="1u">
@@ -55,32 +55,32 @@ export const TextAlignment = (_) => {
         <Text alignment="inherit">Inherit aligned text</Text>
       </Box>
     </Rows>
-  );
-};
+  )
+}
 export const TextCapitalisation = (args) => {
   return (
     <Rows spacing="1u">
       <Text capitalization="default">{args.children} default</Text>
-      <Text capitalization="uppercase">{args.children} uppercase </Text>
+      <Text capitalization="uppercase">{args.children} uppercase</Text>
     </Rows>
-  );
-};
+  )
+}
 export const TextLineClamp = (_) => {
   return (
-    <div style={{ width: "200px" }}>
+    <div style={{ width: '200px' }}>
       <Text lineClamp={3}>
         This Text should be clamped to 3 lines. Anything more gets truncated.
       </Text>
     </div>
-  );
-};
+  )
+}
 export const TextTone = (args) => {
   return (
     <Rows spacing="1u">
-      <Text tone="primary">{args.children} primary </Text>
-      <Text tone="secondary">{args.children} secondary </Text>
-      <Text tone="tertiary">{args.children} tertiary </Text>
-      <Text tone="critical">{args.children} critical </Text>
+      <Text tone="primary">{args.children} primary</Text>
+      <Text tone="secondary">{args.children} secondary</Text>
+      <Text tone="tertiary">{args.children} tertiary</Text>
+      <Text tone="critical">{args.children} critical</Text>
     </Rows>
-  );
-};
+  )
+}

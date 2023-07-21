@@ -1,17 +1,17 @@
-import * as express from "express";
-import type { Request, Response, NextFunction } from "express";
-import debug from "debug";
+import debug from 'debug'
+import * as express from 'express'
+import type { NextFunction, Request, Response } from 'express'
 
-const serverDebug = debug("server");
+const serverDebug = debug('server')
 
 interface BaseServer {
-  app: express.Express;
+  app: express.Express
 
   /**
    * Starts the server on the address or port provided
    * @param address port number or string address or if left undefined express defaults to port 3000
    */
-  start: (address: number | string | undefined) => void;
+  start: (address: number | string | undefined) => void
 }
 
 /**
@@ -26,52 +26,52 @@ interface BaseServer {
  * @returns BaseServer object containing the express app and a start function
  */
 export function createBaseServer(router: express.Router): BaseServer {
-  const app = express();
-  app.use(express.json());
+  const app = express()
+  app.use(express.json())
 
   // It can help to provide an extra layer of obsecurity to reduce server fingerprinting.
-  app.disable("x-powered-by");
+  app.disable('x-powered-by')
 
   // Health check endpoint
-  app.get("/healthz", (req, res: Response) => {
-    res.sendStatus(200);
-  });
+  app.get('/healthz', (req, res: Response) => {
+    res.sendStatus(200)
+  })
 
   // logging middleware
   app.use((req: Request, res: Response, next: NextFunction) => {
-    serverDebug(`${new Date().toISOString()}: ${req.method} ${req.url}`);
-    next();
-  });
+    serverDebug(`${new Date().toISOString()}: ${req.method} ${req.url}`)
+    next()
+  })
 
   // Custom routes router
-  app.use(router);
+  app.use(router)
 
   // catch all router
-  app.all("*", (req, res) => {
+  app.all('*', (req, res) => {
     res.status(404).send({
       error: `unhandled '${req.method}' on '${req.url}'`,
-    });
-  });
+    })
+  })
 
   // default error handler
   app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error(err.stack)
     res.status(500).send({
-      error: "something went wrong",
-    });
-  });
+      error: 'something went wrong',
+    })
+  })
 
   return {
     app,
     start: (address: number | string | undefined) => {
-      console.log(`Listening on '${address}'`);
-      const server = app.listen(address);
-      process.on("SIGTERM", () => {
-        serverDebug("SIGTERM signal received: closing HTTP server");
+      console.log(`Listening on '${address}'`)
+      const server = app.listen(address)
+      process.on('SIGTERM', () => {
+        serverDebug('SIGTERM signal received: closing HTTP server')
         server.close(() => {
-          serverDebug("HTTP server closed");
-        });
-      });
+          serverDebug('HTTP server closed')
+        })
+      })
     },
-  };
+  }
 }

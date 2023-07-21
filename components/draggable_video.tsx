@@ -1,69 +1,69 @@
-import * as React from "react";
-import type {
-  UserSuppliedVideoDragData,
-  UserSuppliedDragData,
-} from "@canva/design";
-import { ui } from "@canva/design";
-import type { VideoMimeType } from "@canva/asset";
-import styles from "../styles/components.css";
+import type { VideoMimeType } from '@canva/asset'
+import type { UserSuppliedDragData, UserSuppliedVideoDragData } from '@canva/design'
+import { ui } from '@canva/design'
+import * as React from 'react'
+import styles from '../styles/components.css'
 
-const SECONDS_IN_MINUTE = 60;
-const DEFAULT_VIDEO_BADGE_LABEL = "VIDEO";
+const SECONDS_IN_MINUTE = 60
+const DEFAULT_VIDEO_BADGE_LABEL = 'VIDEO'
 
-type PartialVideoDragData = Partial<UserSuppliedVideoDragData> &
-  Pick<UserSuppliedVideoDragData, "resolveVideoRef">;
+type PartialVideoDragData =
+  & Partial<UserSuppliedVideoDragData>
+  & Pick<UserSuppliedVideoDragData, 'resolveVideoRef'>
 
-type ElementProps = Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src"> & {
+type ElementProps = Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   /**
    * The thumbnail to display in the object panel. For Gifs, this can just be the gif to upload.
    * Otherwise, this should be a poster frame from tge video.
    */
-  thumbnailImageSrc: string;
+  thumbnailImageSrc: string
   /**
    * A playable preview of the video. This should be short (less than 10 seconds).
    * If uploading a gif, this should be omitted and the gif should be put as the thumbnailImageSrc instead.
    */
-  thumbnailVideoSrc?: string;
+  thumbnailVideoSrc?: string
   /**
    * The duration of the full video in seconds.
    */
-  durationInSeconds?: number;
+  durationInSeconds?: number
   /**
    * The mime-type of the video to be imported.
    */
-  mimeType: VideoMimeType;
-};
+  mimeType: VideoMimeType
+}
 
 function getBadgeLabel(mimeType: VideoMimeType, duration?: number): string {
-  if (mimeType === "image/gif") {
-    return "GIF";
+  if (mimeType === 'image/gif') {
+    return 'GIF'
   }
 
   // If omitted defaults to 'video'
   if (!duration) {
-    return DEFAULT_VIDEO_BADGE_LABEL;
+    return DEFAULT_VIDEO_BADGE_LABEL
   }
 
   // if less than 1 minute, display as seconds
   if (duration < SECONDS_IN_MINUTE) {
-    return `${duration.toFixed(1)}s`;
+    return `${duration.toFixed(1)}s`
   }
 
   // If over 1 minute, display as MM:SS
-  return `${Math.floor(duration / SECONDS_IN_MINUTE)}:${(
-    duration % SECONDS_IN_MINUTE
-  )
-    .toString()
-    .padStart(2, "0")}`;
+  return `${Math.floor(duration / SECONDS_IN_MINUTE)}:${
+    (
+      duration % SECONDS_IN_MINUTE
+    )
+      .toString()
+      .padStart(2, '0')
+  }`
 }
 
-type DraggableVideoProps = PartialVideoDragData & ElementProps;
+type DraggableVideoProps = PartialVideoDragData & ElementProps
 
 const getDragDataAndProps = (
-  props: DraggableVideoProps
+  props: DraggableVideoProps,
 ): {
-  data: PartialVideoDragData & Pick<UserSuppliedVideoDragData, "type">;
-  props: ElementProps;
+  data: PartialVideoDragData & Pick<UserSuppliedVideoDragData, 'type'>
+  props: ElementProps
 } => {
   const {
     fullSize,
@@ -71,29 +71,28 @@ const getDragDataAndProps = (
     resolveVideoRef,
     previewSrc,
     ...elementProps
-  } = props;
+  } = props
   const rawDragData: PartialVideoDragData = {
     fullSize,
     previewSize,
     resolveVideoRef,
     previewSrc: props.previewSrc || elementProps.thumbnailImageSrc,
-    type: "VIDEO",
-  };
+    type: 'VIDEO',
+  }
 
   return {
     data: Object.keys(rawDragData).reduce(
-      (data, key) =>
-        rawDragData[key] ? { ...data, [key]: rawDragData[key] } : data,
-      {} as PartialVideoDragData & Pick<UserSuppliedVideoDragData, "type">
+      (data, key) => rawDragData[key] ? { ...data, [key]: rawDragData[key] } : data,
+      {} as PartialVideoDragData & Pick<UserSuppliedVideoDragData, 'type'>,
     ),
     props: elementProps,
-  };
-};
+  }
+}
 
 export const DraggableVideo = (props: DraggableVideoProps) => {
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [showVideo, setShowVideo] = React.useState(false);
-  const [canDrag, setCanDrag] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false)
+  const [showVideo, setShowVideo] = React.useState(false)
+  const [canDrag, setCanDrag] = React.useState(false)
   const {
     data: dragData,
     props: {
@@ -103,27 +102,27 @@ export const DraggableVideo = (props: DraggableVideoProps) => {
       mimeType,
       ...imgProps
     },
-  } = getDragDataAndProps(props);
-  const opacity = isDragging ? 0 : props.style?.opacity || 1;
+  } = getDragDataAndProps(props)
+  const opacity = isDragging ? 0 : props.style?.opacity || 1
 
   const makeDraggable = (
-    evt: React.SyntheticEvent<HTMLImageElement, Event>
+    evt: React.SyntheticEvent<HTMLImageElement, Event>,
   ) => {
-    const img = evt.currentTarget.parentElement;
+    const img = evt.currentTarget.parentElement
     if (!img) {
-      return;
+      return
     }
 
     const _dragData: UserSuppliedDragData = {
       ...dragData,
-      type: "VIDEO",
+      type: 'VIDEO',
       resolveVideoRef: props.resolveVideoRef,
       previewSize: dragData.previewSize || {
         width: evt.currentTarget.clientWidth,
         height: evt.currentTarget.clientHeight,
       },
       previewSrc: dragData.previewSrc || props.thumbnailImageSrc,
-    };
+    }
 
     try {
       ui.makeDraggable({
@@ -131,13 +130,13 @@ export const DraggableVideo = (props: DraggableVideoProps) => {
         dragData: _dragData,
         onDragEnd: () => setIsDragging(false),
         onDragStart: () => setIsDragging(true),
-      });
-      setCanDrag(true);
-      return imgProps.onLoad?.(evt);
+      })
+      setCanDrag(true)
+      return imgProps.onLoad?.(evt)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   return (
     <div
@@ -167,8 +166,8 @@ export const DraggableVideo = (props: DraggableVideoProps) => {
         {getBadgeLabel(props.mimeType, props.durationInSeconds)}
       </Badge>
     </div>
-  );
-};
+  )
+}
 
 const Badge = ({
   children,
@@ -178,4 +177,4 @@ const Badge = ({
   <div {...props} style={{ ...style }}>
     <div className={styles.badgeInner}>{children}</div>
   </div>
-);
+)

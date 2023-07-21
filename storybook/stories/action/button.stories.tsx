@@ -1,29 +1,29 @@
-import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { Box, Column, Columns, Rows } from "@canva/app-ui-kit";
+import { Box, Column, Columns, Rows } from '@canva/app-ui-kit'
+import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 
-import { Button } from "../../index";
+import { Button } from '../../index'
 
 const meta: Meta<typeof Button> = {
-  title: "@canva/app-ui-kit/Action/Button",
+  title: '@canva/app-ui-kit/Action/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    variant: "primary",
-    children: "Button",
+    variant: 'primary',
+    children: 'Button',
     disabled: false,
     loading: false,
     stretch: false,
     onClick: () => {
-      console.log("button clicked");
+      console.log('button clicked')
     },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Button>;
+export default meta
+type Story = StoryObj<typeof Button>
 
-export const SimpleButton: Story = {};
+export const SimpleButton: Story = {}
 
 /**
  * Primary buttons are for high priority actions.
@@ -32,7 +32,7 @@ export const SimpleButton: Story = {};
  */
 export const PrimaryButton = (_) => {
   return (
-    <Rows spacing={"1u"}>
+    <Rows spacing={'1u'}>
       <Columns spacing="1u">
         <Column width="content">
           <Button variant="primary">Primary</Button>
@@ -54,8 +54,8 @@ export const PrimaryButton = (_) => {
         </Column>
       </Columns>
     </Rows>
-  );
-};
+  )
+}
 
 /**
  * Secondary buttons are for medium priority actions.
@@ -64,7 +64,7 @@ export const PrimaryButton = (_) => {
  */
 export const SecondaryButton = (_) => {
   return (
-    <Rows spacing={"1u"}>
+    <Rows spacing={'1u'}>
       <Columns spacing="1u">
         <Column width="content">
           <Button variant="secondary">Secondary</Button>
@@ -86,8 +86,8 @@ export const SecondaryButton = (_) => {
         </Column>
       </Columns>
     </Rows>
-  );
-};
+  )
+}
 
 /**
  * Tertiary buttons are used for low priority actions.
@@ -97,7 +97,7 @@ export const SecondaryButton = (_) => {
  */
 export const TertiaryButton = (_) => {
   return (
-    <Rows spacing={"1u"}>
+    <Rows spacing={'1u'}>
       <Columns spacing="1u">
         <Column width="content">
           <Button variant="tertiary">Tertiary</Button>
@@ -119,8 +119,8 @@ export const TertiaryButton = (_) => {
         </Column>
       </Columns>
     </Rows>
-  );
-};
+  )
+}
 
 /**
  * The button width can be stretched to fill the container using the `stretch` prop.
@@ -136,9 +136,9 @@ export const ButtonWidths = (_) => {
         Stretched button
       </Button>
       <Box paddingBottom="1u"></Box>
-      <Rows spacing={"0"}>
+      <Rows spacing={'0'}>
         <Button variant="primary">Button inside Rows</Button>
       </Rows>
     </>
-  );
-};
+  )
+}

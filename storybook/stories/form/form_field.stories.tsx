@@ -6,10 +6,10 @@ import {
   RadioGroup,
   SegmentedControl,
   TextInput,
-} from "@canva/app-ui-kit";
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import { FormField, Select } from "../../index";
+} from '@canva/app-ui-kit'
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import { FormField, Select } from '../../index'
 
 /**
  * `<FormField/>` presents a form control to users with a Form Label and optional Form Description.
@@ -24,40 +24,40 @@ import { FormField, Select } from "../../index";
  * Ensure to pass these parameters down to the control to connect the components together.
  */
 const meta: Meta<typeof FormField> = {
-  title: "@canva/app-ui-kit/Form/Form Field",
+  title: '@canva/app-ui-kit/Form/Form Field',
   component: FormField,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    label: "Form field label",
+    label: 'Form field label',
     control: (props) => (
       <Select
         {...props}
         options={[
-          { value: "blueberry", label: "Blueberry" },
-          { value: "apple", label: "Apple" },
-          { value: "strawberry", label: "Strawberry" },
+          { value: 'blueberry', label: 'Blueberry' },
+          { value: 'apple', label: 'Apple' },
+          { value: 'strawberry', label: 'Strawberry' },
         ]}
       />
     ),
-    description: "Form field description",
+    description: 'Form field description',
     error: false,
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof FormField>;
+export default meta
+type Story = StoryObj<typeof FormField>
 
 export const SimpleFormField: Story = {
   args: {
-    label: "Form field label",
-    description: "Form field description",
+    label: 'Form field label',
+    description: 'Form field description',
     control: (props) => (
       <Select
         {...props}
         options={[
-          { value: "blueberry", label: "Blueberry" },
-          { value: "apple", label: "Apple" },
-          { value: "strawberry", label: "Strawberry" },
+          { value: 'blueberry', label: 'Blueberry' },
+          { value: 'apple', label: 'Apple' },
+          { value: 'strawberry', label: 'Strawberry' },
         ]}
       />
     ),
@@ -83,136 +83,136 @@ export const SimpleFormField: Story = {
       },
     },
   },
-};
+}
 
 export const FormFieldWithError: Story = {
   args: {
-    description: "Description is not visible when error is true",
+    description: 'Description is not visible when error is true',
     error: true,
   },
-};
+}
 export const FormFieldWithCustomErrorMessage: Story = {
   args: {
-    description: "Description is not visible when custom error message exists",
-    error: "Custom error message",
+    description: 'Description is not visible when custom error message exists',
+    error: 'Custom error message',
   },
-};
+}
 
 export const FormFieldWithCheckboxAsControl = (_) => {
   return (
     <FormField
-      label={"Checkbox"}
-      description={"FormField with a Checkbox component as the control"}
+      label={'Checkbox'}
+      description={'FormField with a Checkbox component as the control'}
       control={(props) => <Checkbox {...props} label="Checkbox" />}
     />
-  );
-};
+  )
+}
 export const FormFieldWithCheckboxGroupAsControl = (_) => {
   return (
     <FormField
-      label={"CheckboxGroup"}
-      description={"FormField with a CheckboxGroup component as the control"}
+      label={'CheckboxGroup'}
+      description={'FormField with a CheckboxGroup component as the control'}
       control={(props) => (
         <CheckboxGroup
           id={props.id}
           options={[
-            { value: "blueberry", label: "Blueberry" },
-            { value: "apple", label: "Apple" },
-            { value: "strawberry", label: "Strawberry" },
+            { value: 'blueberry', label: 'Blueberry' },
+            { value: 'apple', label: 'Apple' },
+            { value: 'strawberry', label: 'Strawberry' },
           ]}
         />
       )}
     />
-  );
-};
+  )
+}
 export const FormFieldWithMultilineInputAsControl = (_) => {
   return (
     <FormField
-      label={"MultilineInput"}
-      description={"FormField with a MultilineInput component as the control"}
+      label={'MultilineInput'}
+      description={'FormField with a MultilineInput component as the control'}
       control={(props) => <MultilineInput {...props} />}
     />
-  );
-};
+  )
+}
 export const FormFieldWithNumberInputAsControl = (_) => {
   return (
     <FormField
-      label={"NumberInput"}
-      description={"FormField with a NumberInput component as the control"}
+      label={'NumberInput'}
+      description={'FormField with a NumberInput component as the control'}
       control={(props) => (
         <NumberInput
           {...props}
           hasSpinButtons={true}
-          decrementAriaLabel={"decrement number by 5"}
-          incrementAriaLabel={"increment number by 5"}
+          decrementAriaLabel={'decrement number by 5'}
+          incrementAriaLabel={'increment number by 5'}
           step={5}
           defaultValue={5}
         />
       )}
     />
-  );
-};
+  )
+}
 export const FormFieldWithRadioGroupAsControl = (_) => {
   return (
     <FormField
-      label={"RadioGroup"}
-      description={"FormField with a RadioGroup component as the control"}
+      label={'RadioGroup'}
+      description={'FormField with a RadioGroup component as the control'}
       control={(props) => (
         <RadioGroup
           id={props.id}
           options={[
-            { value: "blueberry", label: "Blueberry" },
-            { value: "apple", label: "Apple" },
-            { value: "strawberry", label: "Strawberry" },
+            { value: 'blueberry', label: 'Blueberry' },
+            { value: 'apple', label: 'Apple' },
+            { value: 'strawberry', label: 'Strawberry' },
           ]}
           onChange={() => 0}
         />
       )}
     />
-  );
-};
+  )
+}
 export const FormFieldWithSegmentedControlAsControl = (_) => {
   return (
     <FormField
-      label={"SegmentedControl"}
-      description={"FormField with a SegmentedControl component as the control"}
+      label={'SegmentedControl'}
+      description={'FormField with a SegmentedControl component as the control'}
       control={(props) => (
         <SegmentedControl
           id={props.id}
           options={[
-            { value: "blueberry", label: "Blueberry" },
-            { value: "apple", label: "Apple" },
-            { value: "strawberry", label: "Strawberry" },
+            { value: 'blueberry', label: 'Blueberry' },
+            { value: 'apple', label: 'Apple' },
+            { value: 'strawberry', label: 'Strawberry' },
           ]}
         />
       )}
     />
-  );
-};
+  )
+}
 export const FormFieldWithSelectAsControl = (_) => {
   return (
     <FormField
-      label={"Select"}
-      description={"FormField with a Select component as the control"}
+      label={'Select'}
+      description={'FormField with a Select component as the control'}
       control={(props) => (
         <Select
           {...props}
           options={[
-            { value: "blueberry", label: "Blueberry" },
-            { value: "apple", label: "Apple" },
-            { value: "strawberry", label: "Strawberry" },
+            { value: 'blueberry', label: 'Blueberry' },
+            { value: 'apple', label: 'Apple' },
+            { value: 'strawberry', label: 'Strawberry' },
           ]}
         />
       )}
     />
-  );
-};
+  )
+}
 export const FormFieldWithTextInputAsControl = (_) => {
   return (
     <FormField
-      label={"TextInput"}
-      description={"FormField with a TextInput component as the control"}
+      label={'TextInput'}
+      description={'FormField with a TextInput component as the control'}
       control={(props) => <TextInput id={props.id} />}
     />
-  );
-};
+  )
+}

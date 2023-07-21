@@ -1,7 +1,7 @@
-import { Rows, Title } from "@canva/app-ui-kit";
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import { LoadingIndicator } from "../../index";
+import { Rows, Title } from '@canva/app-ui-kit'
+import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+import { LoadingIndicator } from '../../index'
 
 /**
  * `<LoadingIndicator/>` notifies the user that content is being loaded or
@@ -13,16 +13,16 @@ import { LoadingIndicator } from "../../index";
  * displayed using {@link ScreenReaderContent}.
  */
 const meta: Meta<typeof LoadingIndicator> = {
-  title: "@canva/app-ui-kit/Progress/Loading Indicator",
+  title: '@canva/app-ui-kit/Progress/Loading Indicator',
   component: LoadingIndicator,
-  tags: ["autodocs"],
-  args: { size: "medium" },
-};
+  tags: ['autodocs'],
+  args: { size: 'medium' },
+}
 
-export default meta;
-type Story = StoryObj<typeof LoadingIndicator>;
+export default meta
+type Story = StoryObj<typeof LoadingIndicator>
 
-export const SimpleLoadingIndicator: Story = {};
+export const SimpleLoadingIndicator: Story = {}
 export const LoadingIndicatorSize = (_) => (
   <Rows spacing="1u">
     <Title size="xsmall">Small</Title>
@@ -32,4 +32,4 @@ export const LoadingIndicatorSize = (_) => (
     <Title size="xsmall">Large</Title>
     <LoadingIndicator size="large" />
   </Rows>
-);
+)

@@ -1,19 +1,19 @@
-import type { DraggableElementData } from "@canva/design";
-import * as React from "react";
-import styles from "styles/components.css";
-import { ui } from "@canva/design";
+import type { DraggableElementData } from '@canva/design'
+import { ui } from '@canva/design'
+import * as React from 'react'
+import styles from 'styles/components.css'
 
 type DragProps = Omit<
-  DraggableElementData["dragData"] & { type: "TEXT" },
-  "type" | "children"
->;
+  DraggableElementData['dragData'] & { type: 'TEXT' },
+  'type' | 'children'
+>
 
-export type DraggableTextProps = React.HTMLAttributes<HTMLElement> & DragProps;
+export type DraggableTextProps = React.HTMLAttributes<HTMLElement> & DragProps
 
 export const DraggableText = (props: DraggableTextProps) => {
-  const [node, setNode] = React.useState<HTMLElement | null>();
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [canDrag, setCanDrag] = React.useState(false);
+  const [node, setNode] = React.useState<HTMLElement | null>()
+  const [isDragging, setIsDragging] = React.useState(false)
+  const [canDrag, setCanDrag] = React.useState(false)
   const {
     decoration,
     textAlign,
@@ -21,18 +21,18 @@ export const DraggableText = (props: DraggableTextProps) => {
     fontStyle,
     children,
     ...nodeProps
-  } = props;
+  } = props
 
   React.useEffect(() => {
     if (!node) {
-      return;
+      return
     }
 
     try {
       const elemData: DraggableElementData = {
         node,
         dragData: {
-          type: "TEXT",
+          type: 'TEXT',
           decoration,
           fontWeight,
           fontStyle,
@@ -40,15 +40,15 @@ export const DraggableText = (props: DraggableTextProps) => {
         },
         onDragEnd: () => setIsDragging(false),
         onDragStart: () => setIsDragging(true),
-      };
-      ui.makeDraggable(elemData);
-      setCanDrag(true);
+      }
+      ui.makeDraggable(elemData)
+      setCanDrag(true)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  }, [node]);
+  }, [node])
 
-  const opacity = isDragging ? 0 : props.style?.opacity || 1;
+  const opacity = isDragging ? 0 : props.style?.opacity || 1
 
   const style = {
     fontStyle,
@@ -57,7 +57,7 @@ export const DraggableText = (props: DraggableTextProps) => {
     textDecorationLine: decoration,
     ...props.style,
     opacity,
-  };
+  }
 
   return (
     <div style={style}>
@@ -70,5 +70,5 @@ export const DraggableText = (props: DraggableTextProps) => {
         {children}
       </p>
     </div>
-  );
-};
+  )
+}

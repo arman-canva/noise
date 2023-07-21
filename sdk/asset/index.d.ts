@@ -1,6 +1,6 @@
-declare type AllOrNone<T> = T | Never<T>;
+declare type AllOrNone<T> = T | Never<T>
 
-declare type AllOrNone_2<T> = T | Never_2<T>;
+declare type AllOrNone_2<T> = T | Never_2<T>
 
 /**
  * @public
@@ -12,10 +12,10 @@ export declare interface Asset {
    * It returns a asset reference, and a function called `whenUploaded()` that can
    * be used to await the upload task completion.
    */
-  upload(options: ImageUploadOptions): Promise<QueuedImage>;
-  upload(options: VideoUploadOptions): Promise<QueuedVideo>;
-  upload(options: AudioUploadOptions): Promise<QueuedAudio>;
-  upload(options: AssetUploadOptions): Promise<QueuedAsset>;
+  upload(options: ImageUploadOptions): Promise<QueuedImage>
+  upload(options: VideoUploadOptions): Promise<QueuedVideo>
+  upload(options: AudioUploadOptions): Promise<QueuedAudio>
+  upload(options: AssetUploadOptions): Promise<QueuedAsset>
 }
 
 /**
@@ -25,32 +25,32 @@ export declare interface Asset {
 export declare type AssetUploadOptions =
   | ImageUploadOptions
   | VideoUploadOptions
-  | AudioUploadOptions;
+  | AudioUploadOptions
 
 /**
  * @public
  * The supported MIME types for audio assets in Canva.
  */
 export declare type AudioMimeType =
-  | "audio/mpeg"
-  | "audio/mp4"
-  | "audio/x-m4a"
-  | "audio/mp3"
-  | "audio/ogg"
-  | "audio/wav"
-  | "audio/x-wav"
-  | "audio/wave"
-  | "audio/vnd.wave"
-  | "audio/x-pn-wav"
-  | "audio/webm";
+  | 'audio/mpeg'
+  | 'audio/mp4'
+  | 'audio/x-m4a'
+  | 'audio/mp3'
+  | 'audio/ogg'
+  | 'audio/wav'
+  | 'audio/x-wav'
+  | 'audio/wave'
+  | 'audio/vnd.wave'
+  | 'audio/x-pn-wav'
+  | 'audio/webm'
 
 /**
  * @public
  * A unique identifier that references an audio asset in Canva's backend.
  */
 export declare type AudioRef = string & {
-  __audioRef: never;
-};
+  __audioRef: never
+}
 
 /**
  * @public
@@ -60,17 +60,17 @@ export declare type AudioUploadOptions = {
   /**
    * For audio upload, the type is always 'AUDIO'
    */
-  readonly type: "AUDIO";
+  readonly type: 'AUDIO'
   /**
    * An id is a unique identifier specified by the developer,
    * It must be an alphanumeric string of up to 100 characters.
    * Each resource id uniquely identifies an external audio.
    */
-  readonly id: string;
+  readonly id: string
   /**
    * A URL of the audio to upload. Must be an HTTPS URL of up to 4096 characters.
    */
-  readonly url: string;
+  readonly url: string
   /**
    * A MIME type of the audio. It must be one of these:
    * - 'audio/mpeg'
@@ -82,17 +82,17 @@ export declare type AudioUploadOptions = {
    * - 'audio/x-wav'
    * - 'audio/webm'
    */
-  readonly mimeType: AudioMimeType;
+  readonly mimeType: AudioMimeType
   /**
    * Title of the audio file which Canva will display in the editor.
    */
-  readonly title: string;
+  readonly title: string
   /**
    * Duration of the audio file which Canva will use when using the file for the first time,
    * in milliseconds.
    */
-  readonly durationMs: number;
-};
+  readonly durationMs: number
+}
 
 /**
  * @public
@@ -102,30 +102,30 @@ export declare type Dimensions = {
   /**
    * Image width. Used only to calculate the aspect ratio.
    */
-  readonly width: number;
+  readonly width: number
   /**
    * Image height. Used only to calculate the aspect ratio.
    */
-  readonly height: number;
-};
+  readonly height: number
+}
 
 /**
  * @public
  * The supported MIME types for image assets in Canva.
  */
 export declare type ImageMimeType =
-  | "image/jpeg"
-  | "image/heic"
-  | "image/png"
-  | "image/svg+xml";
+  | 'image/jpeg'
+  | 'image/heic'
+  | 'image/png'
+  | 'image/svg+xml'
 
 /**
  * @public
  * A unique identifier that references an image asset in Canva's backend.
  */
 export declare type ImageRef = string & {
-  __imageRef: never;
-};
+  __imageRef: never
+}
 
 /**
  * @public
@@ -135,18 +135,18 @@ export declare type ImageUploadOptions = {
   /**
    * For image upload, the type is always 'IMAGE'
    */
-  readonly type: "IMAGE";
+  readonly type: 'IMAGE'
   /**
    * An id is a unique identifier specified by the developer,
    * It must be an alphanumeric string of up to 100 characters.
    * Each resource id uniquely identifies an external image.
    */
-  readonly id: string;
+  readonly id: string
 
   /**
    * A URL of the image to upload. Must be an HTTPS URL of up to 4096 characters.
    */
-  readonly url: string;
+  readonly url: string
   /**
    * A MIME type of the image. It must be one of these:
    * - image/jpeg
@@ -154,27 +154,27 @@ export declare type ImageUploadOptions = {
    * - image/png
    * - image/svg+xml
    */
-  readonly mimeType: ImageMimeType;
+  readonly mimeType: ImageMimeType
   /**
    * A URL of a smaller image or a thumbnail that Canva will display while the image upload
    * is still in progress. Must be a valid HTTPS URL of up to 4096 characters.
    */
-  readonly thumbnailUrl: string;
-} & AllOrNone<Dimensions>;
+  readonly thumbnailUrl: string
+} & AllOrNone<Dimensions>
 
 declare type Never<T> = {
-  [key in keyof T]?: never;
-};
+  [key in keyof T]?: never
+}
 
 declare type Never_2<T> = {
-  [key in keyof T]?: never;
-};
+  [key in keyof T]?: never
+}
 
 /**
  * @public
  * The queued asset upload
  */
-export declare type QueuedAsset = QueuedImage | QueuedVideo | QueuedAudio;
+export declare type QueuedAsset = QueuedImage | QueuedVideo | QueuedAudio
 
 /**
  * @public
@@ -184,12 +184,12 @@ export declare type QueuedAudio = {
   /**
    * The audio reference – a unique ID of an audio file that Canva recognizes.
    */
-  readonly ref: AudioRef;
+  readonly ref: AudioRef
   /**
    * A method that a developer can call to await the audio upload completion.
    */
-  readonly whenUploaded: () => Promise<void>;
-};
+  readonly whenUploaded: () => Promise<void>
+}
 
 /**
  * @public
@@ -199,12 +199,12 @@ export declare type QueuedImage = {
   /**
    * The image reference – a unique ID of an image file that Canva recognizes.
    */
-  readonly ref: ImageRef;
+  readonly ref: ImageRef
   /**
    * A method that a developer can call to await the image upload completion.
    */
-  readonly whenUploaded: () => Promise<void>;
-};
+  readonly whenUploaded: () => Promise<void>
+}
 
 /**
  * @public
@@ -214,18 +214,18 @@ export declare type QueuedVideo = {
   /**
    * The video reference – a unique ID of a video file that Canva recognizes.
    */
-  readonly ref: VideoRef;
+  readonly ref: VideoRef
   /**
    * A method that a developer can call to await the video upload completion.
    */
-  readonly whenUploaded: () => Promise<void>;
-};
+  readonly whenUploaded: () => Promise<void>
+}
 
 /**
  * @public
  * A generic type for all asset references including images, videos, and audios.
  */
-export declare type Ref = ImageRef | VideoRef | AudioRef;
+export declare type Ref = ImageRef | VideoRef | AudioRef
 
 /**
  * @public
@@ -234,45 +234,45 @@ export declare type Ref = ImageRef | VideoRef | AudioRef;
  * be used to await the upload task completion.
  */
 export declare function upload(
-  options: ImageUploadOptions
-): Promise<QueuedImage>;
+  options: ImageUploadOptions,
+): Promise<QueuedImage>
 
 /** @public */
 export declare function upload(
-  options: VideoUploadOptions
-): Promise<QueuedVideo>;
+  options: VideoUploadOptions,
+): Promise<QueuedVideo>
 
 /** @public */
 export declare function upload(
-  options: AudioUploadOptions
-): Promise<QueuedAudio>;
+  options: AudioUploadOptions,
+): Promise<QueuedAudio>
 
 /** @public */
 export declare function upload(
-  options: AssetUploadOptions
-): Promise<QueuedAsset>;
+  options: AssetUploadOptions,
+): Promise<QueuedAsset>
 
 /**
  * @public
  * The supported MIME types for video assets in Canva.
  */
 export declare type VideoMimeType =
-  | "video/avi"
-  | "image/gif"
-  | "video/x-m4v"
-  | "video/x-matroska"
-  | "video/quicktime"
-  | "video/mp4"
-  | "video/mpeg"
-  | "video/webm";
+  | 'video/avi'
+  | 'image/gif'
+  | 'video/x-m4v'
+  | 'video/x-matroska'
+  | 'video/quicktime'
+  | 'video/mp4'
+  | 'video/mpeg'
+  | 'video/webm'
 
 /**
  * @public
  * A unique identifier that references a video asset in Canva's backend.
  */
 export declare type VideoRef = string & {
-  __videoRef: never;
-};
+  __videoRef: never
+}
 
 /**
  * @public
@@ -282,18 +282,18 @@ export declare type VideoUploadOptions = {
   /**
    * For video upload, the type is always 'VIDEO'
    */
-  readonly type: "VIDEO";
+  readonly type: 'VIDEO'
   /**
    * An id is a unique identifier specified by the developer.
    * It must be an alphanumeric string of up to 100 characters.
    * Each resource id uniquely identifies an external video.
    */
-  readonly id: string;
+  readonly id: string
 
   /**
    * A URL of the video to upload. Must be an HTTPS URL of up to 4096 characters.
    */
-  readonly url: string;
+  readonly url: string
   /**
    * A MIME type of the video. It must be one of these:
    * - video/avi
@@ -305,17 +305,17 @@ export declare type VideoUploadOptions = {
    * - video/mpeg
    * - video/webm
    */
-  readonly mimeType: VideoMimeType;
+  readonly mimeType: VideoMimeType
   /**
    * A URL of a smaller video that Canva will display while the image upload
    * is still in progress. Must be a valid HTTPS URL of up to 4096 characters.
    */
-  readonly thumbnailVideoUrl?: string;
+  readonly thumbnailVideoUrl?: string
   /**
    * A URL of a smaller image that Canva will display while the image upload
    * is still in progress. Must be a valid HTTPS URL of up to 4096 characters.
    */
-  readonly thumbnailImageUrl: string;
-} & AllOrNone<Dimensions>;
+  readonly thumbnailImageUrl: string
+} & AllOrNone<Dimensions>
 
-export {};
+export {}

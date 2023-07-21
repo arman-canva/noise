@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { FileInputItem } from "../../index";
-import { FileInputWithFileInputItems } from "./file_input.stories";
+import type { Meta, StoryObj } from '@storybook/react'
+import { FileInputItem } from '../../index'
+import { FileInputWithFileInputItems } from './file_input.stories'
 
 /**
  * `<FileInputItem/>` is a component that shows an uploaded item.
@@ -10,19 +10,19 @@ import { FileInputWithFileInputItems } from "./file_input.stories";
  * component can then be used to render the list of uploaded files.
  */
 const meta: Meta<typeof FileInputItem> = {
-  title: "@canva/app-ui-kit/Form/File Input Item",
+  title: '@canva/app-ui-kit/Form/File Input Item',
   component: FileInputItem,
-  tags: ["autodocs"],
-  args: { label: "exampleFileName.png" },
-};
+  tags: ['autodocs'],
+  args: { label: 'exampleFileName.png' },
+}
 
-export default meta;
-type Story = StoryObj<typeof FileInputItem>;
+export default meta
+type Story = StoryObj<typeof FileInputItem>
 
-export const SimpleFileInputItem: Story = {};
+export const SimpleFileInputItem: Story = {}
 export const DisabledFileInputItem: Story = {
   args: {
     disabled: true,
   },
-};
-export const FileInputItemsWithFileInput = FileInputWithFileInputItems;
+}
+export const FileInputItemsWithFileInput = FileInputWithFileInputItems
