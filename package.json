@@ -29,7 +29,8 @@
     "@canva/user": "./sdk/user",
     "clsx": "^1.2.1",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
